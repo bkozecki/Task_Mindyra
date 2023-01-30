@@ -1,0 +1,31 @@
+.slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &_button {
+    min-width: 8rem;
+    padding: 1rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgb(4, 85, 191);
+    margin: 1rem 2rem;
+    color: #fff;
+    transition: all 0.2 ease-in;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &_img_wrapper {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+}
