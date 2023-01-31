@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Octokit } from "octokit";
 
 import "./Slider.style.scss";
-
-const octokit = new Octokit({
-  auth: "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",
-});
 
 const usernames = [
   "gaearon",
