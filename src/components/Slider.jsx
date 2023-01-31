@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Octokit } from "octokit";
 
 import "./Slider.style.scss";
+
+const octokit = new Octokit({
+  auth: "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",
+});
 
 const usernames = [
   "gaearon",
@@ -15,23 +20,27 @@ const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (currentIndex > 4) {
-      setCurrentIndex(0);
-    }
-    if (currentIndex < 0) {
-      setCurrentIndex(4);
-    }
     fetch(`https://api.github.com/users/${usernames[currentIndex]}`)
       .then((res) => res.json())
       .then((data) => setCurrentImg(data.avatar_url));
   }, [currentImg, currentIndex]);
 
   const nextImg = () => {
-    setCurrentIndex((prevState) => prevState + 1);
+    if (currentIndex !== usernames.length - 1) {
+      setCurrentIndex((prevState) => prevState + 1);
+    }
+    if (currentIndex === usernames.length - 1) {
+      setCurrentIndex(0);
+    }
   };
 
   const prevImg = () => {
-    setCurrentIndex((prevState) => prevState - 1);
+    if (currentIndex !== 0) {
+      setCurrentIndex((prevState) => prevState - 1);
+    }
+    if (currentIndex === 0) {
+      setCurrentIndex(usernames.length - 1);
+    }
   };
 
   return (
